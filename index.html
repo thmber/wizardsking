@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+  <html translate="no">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Wizards' King</title>
+      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="style_smallscreen.css" />
+      <link rel="icon" href="./img/level3/Platformer/Brick_02.png" />
+
+      <script src="./level/floordata.js"></script>
+      <script src="./models/drawableObject.class.js"></script>
+      <script src="./models/movableObject.class.js"></script>
+     
+      <script src="./models/minotaur.class.js"></script>
+      <script src="./models/brother.class.js"></script>
+      <script src="./models/world.class.js"></script>
+      <script src="./models/level.class.js"></script>
+
+      <script src="./models/crate.class.js"></script>
+      <script src="./models/goblin.class.js"></script>
+      <script src="./models/golem.class.js"></script>
+      <script src="./models/skeleton.class.js"></script>
+      <script src="./models/villager.class.js"></script>
+      <script src="./models/angel.class.js"></script>
+
+
+      <script src="./models/ice-goblin.class.js"></script>
+      <script src="./models/reaper.class.js"></script>
+      <script src="./models/character.class.js"></script>
+      <script src="./level/leveldata.js"></script>
+
+      <script src="./models/background.class.js"></script>
+      <script src="./models/backgroundObjects.class.js"></script>
+      <script src="./models/decoration.class.js"></script>
+      <script src="./models/collectable.class.js"></script>
+      <script src="./models/barrel.class.js"></script>
+      <script src="./models/life.class.js"></script>
+      <script src="./models/lightning.class.js"></script>
+      <script src="./models/movingFloor.class.js"></script>
+      <script src="./models/knife.class.js"></script>
+      <script src="./level/level1.js"></script>
+      <script src="./level/level2.js"></script>
+      <script src="./level/level3.js"></script>
+      <script src="./level/level4.js"></script>
+    
+      <script src="./level/restored.js"></script>
+      <script src="./models/levelEndDoor.class.js"></script>
+      <script src="./models/endScreen.class.js"></script>
+      <script src="./models/bullets.class.js"></script>
+      <script src="./models/explosion.class.js"></script>
+      <script src="./models/keyboard.class.js"></script>
+      <script src="./models/statusbar.class.js"></script>
+      <script src="./js/game.js"></script>
+      <script src="./js/game_Opening.js"></script>
+      <script src="./js/keys.js"></script>
+      <script src="./js/game_SoundSettings.js"></script>
+    </head>
+    <body onload="init()" id="body">
+      <div class="fullscreen" id="fullscreen">
+        <canvas id="canvas" width="720" height="480"> </canvas>
+        <div class="start-screen" id="start-screen">
+
+
+          <div class="start-game-button" id="start-game-button" onclick="checkDevices()">
+            <div>Start Game?</div>
+          </div>
+          <div class="turn-device-message-box" id="turn-device-message">
+            <div class="turn-device-message">
+              Please turn your device for a better experience!
+            </div>
+            <div class="turn-device-button" onclick="startGameFromTouchScreen()">
+              Enable Full Screen
+            </div>
+          </div>
+          <div class="impressum-controls-box">
+            <div class="startscreen-controls">
+              <div>
+                <img src="./img/screen-controls/left-arrow.png" alt="" />
+                <div>Left</div>
+              </div>
+              <div>
+                <img src="./img/screen-controls/right-arrow.png" alt="" />
+                <div>Right</div>
+              </div>
+              <div>
+                <img src="./img/screen-controls/up-arrow.png" alt="" />
+                <div>Jump</div>
+              </div>
+              <div>
+                <img src="./img/screen-controls/space-button.png" alt="" />
+                <div>Fire/Freeze</div>
+              </div>
+            </div>
+            <div class="impressum-box" onclick="show('impressum-screen')">
+              Impressum
+            </div>
+          </div>
+        </div>
+        <div class="impressum-screen" id="impressum-screen">
+          <div>
+            <h2>Impressum</h2>
+            <p>Anbieter:</p>
+            <p>Thomas Mahler</p>
+            <p>Weserstraße 191</p>
+            <p>12045 Berlin</p>
+            <p>Webseite: thomas-mahler.developerakademie.net</p>
+            <p>E-Mail: thmahler@gmx.net</p>
+            <p>Phone: 0172-9162309</p>
+            <br />
+            <br />
+            <div class="back-from-impressum" onclick="back('impressum-screen')">
+              &larr;
+            </div>
+          </div>
+          <div></div>
+        </div>
+        <div class="loading-screen" id="loading-screen">
+          <img class="green-light" id="green-light" src="./img/light.png" alt="" />
+          <div class="title-letters-container" id="title-letters-container">
+            <div class="title-letters">
+              <p class="title-letters" style="--i: 1">W</p>
+              <p class="title-letters" style="--i: 2">I</p>
+              <p class="title-letters" style="--i: 3">Z</p>
+              <p class="title-letters" style="--i: 4">A</p>
+              <p class="title-letters" style="--i: 5">R</p>
+              <p class="title-letters" style="--i: 6">D</p>
+              <p class="title-letters" style="--i: 7">S</p>
+              <p class="title-letters" style="--i: 8">'</p>
+              <p class="title-letters" style="--i: 9">&nbsp;&nbsp;</p>
+              <p class="title-letters" style="--i: 10">K</p>
+              <p class="title-letters" style="--i: 11">I</p>
+              <p class="title-letters" style="--i: 12">N</p>
+              <p class="title-letters" style="--i: 13">G</p>
+            </div>
+          </div>
+        </div>
+        <div class="canvas-controls" id="canvas-controls">
+          <img class="full-screen" id="show-full-screen" onclick="fullScreen()" src="./img/screen-controls/fullscreen.png"alt=""/>
+          <div class="settings-button" onclick="showSettings()">
+            <div>
+              <img src="./img/screen-controls/settings.svg" alt="" />
+            </div>
+          </div>
+          <div class="control-button back-to-interior" onclick="closeGame()">
+            <span class="back-to-interior">&#10006;</span>
+          </div>
+          <div class="control-button pause-button" onclick="pauseGame()">
+            <span id="pause-button">&#10073;&#10073;</span>
+          </div>
+          <div class="touch-button touch-left" id="touch-left" ontouchstart="touchLeft()" ontouchend="touchLeftEnd()">
+            <span>&larr;</span>
+          </div>
+          <div class="touch-button touch-right" id="touch-right" ontouchstart="touchRight()" ontouchend="touchRightEnd()" >
+            <span>&rarr;</span>
+          </div>
+          <div class="touch-button touch-up" id="touch-up" ontouchstart="touchUp()" ontouchend="touchUpEnd()" >
+            <span>&uarr;</span>
+          </div>
+          <div class="touch-button touch-shoot" id="touch-shoot" ontouchstart="touchShoot()" ontouchend="touchShootEnd()">
+            <span>&divideontimes;</span>
+          </div>
+
+          <div class="control-keys">
+            <div class="control-keys-box">
+              <div class="control-keys-move">
+                <img class="left-img" src="img/screen-controls/left-arrow.png" alt="" />
+                <img class="right-img" src="img/screen-controls/right-arrow.png" alt="" />
+              </div>
+              <span>move</span>
+            </div>
+            <div class="control-keys-box">
+              <img class="up-img" src="img/screen-controls/up-arrow.png" alt="" />
+              <span>jump</span>
+            </div>
+            <div class="control-keys-box space-control" id="space-control">
+              <img class="space-img" src="img/screen-controls/space-button.png" alt="" />
+              <span>shoot</span>
+            </div>
+          </div>
+          <div class="ogre-timer" id="ogre-timer"></div>
+        </div>
+        <div class="arrow-to-door" id="arrowtodoor">&#x2191; <br />
+          Go inside!
+        </div>
+
+        <div class="canvas-overlay-exterior" id="canvas-overlay-exterior">
+          <img class="story-lightning" id="story-lightning" src="img/story-icons/lightning.png" alt="" />
+          <div class="door" onclick="goInside()"></div>
+        </div>
+        <div class="canvas-overlay-interior" id="canvas-overlay-interior">
+          <div class="settings-button" onclick="showSettings()">
+            <div>
+              <img src="./img/screen-controls/settings.svg" alt="" />
+            </div>
+          </div>
+          <div class="interior-book" id="interior-book"></div>
+          <div class="interior-candles" id="interior-candles"></div>
+          <div class="potion-box">
+            <img class="potion1" id="potion1" src="img/interior/potion-red.png" alt=""/>
+            <span class="potion-text1 interior-text" onclick="newGame()"
+              >New Game</span>
+          </div>
+          <div class="potion-box">
+            <img class="potion2" id="potion2" src="img/interior/potion-purple.png" alt="" />
+            <span class="potion-text2 interior-text" onclick="show('story'), showStory()">Story</span>
+          </div>
+          <div class="potion-box">
+            <img class="potion3" id="potion3" src="img/interior/potion-yellow.png" alt="" />
+            <span class="potion-text3 interior-text" onclick="show('how-to-play')">How to play</span>
+          </div>
+          <div class="potion-box">
+            <img class="potion4" id="potion4" src="img/interior/potion-blue.png" alt=""/>
+            <span class="potion-text4 interior-text" onclick="show('credits')"
+              >Credits</span>
+          </div>
+        </div>
+        <div class="overlay-settings" id="overlay-settings">
+          <img class="settings-paper" src="./img/settings/settingspaper.png" alt=""/>
+          <div class="settings-box">
+            <span class="back-from-settings" onclick="backFromSettings()">&#x2715;</span>
+            <div id="settings-music-letters">Music</div>
+            <div class="rulerbox">
+              <div class="ruler-PlusMinus" onclick="changeMusicVolume('down')">-</div>
+              <div class="ruler-background">
+                <div class="ruler-imagebox-music" id="ruler-music">
+                  <img src="./img/settings/Sword.png" alt="" />
+                </div>
+              </div>
+
+              <div class="ruler-PlusMinus" onclick="changeMusicVolume('up')">+</div>
+            </div>
+            <div id="settings-sound-letters">Sound</div>
+            <div class="rulerbox">
+              <div class="ruler-PlusMinus" onclick="changeSoundElementsVolume('down')">-</div>
+              <div class="ruler-background">
+                <div class="ruler-imagebox-sound" id="ruler-sound">
+                  <img src="./img/settings/Sword.png" alt="" />
+                </div>
+              </div>
+              <div class="ruler-PlusMinus" onclick="changeSoundElementsVolume('up')">+</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="story" id="story">
+          <span onclick="back('story'), hideStorylines()" class="story-arrow" id="story-arrow">&leftarrow;</span>
+          <img class="story-lightning" id="story-lightning" src="img/story-icons/lightning.png" alt=""/>
+          <div class="story-line invisible-line" id="story-line1">
+            <span
+              >The wizard-brothers could have just enjoyed their
+              retirement</span>
+            <img class="couch-icon" src="img/story-icons/couch.png" alt="" />
+            <span>.</span>
+          </div>
+          <div class="story-line invisible-line" id="story-line2">
+            <span>But when they played their weekly game of</span>
+            <img class="chessboard-icon" src="img/story-icons/chess-board.png" alt="" />
+            <span>, things got out of hand.</span>
+          </div>
+          <div class="story-line invisible-line" id="story-line3">
+            <span>The </span>
+            <img class="chessking-icon" src="img/story-icons/chess-king-icon.png" alt="" />
+            <span>fell under the</span>
+            <img class="story-icon" src="img/story-icons/table.png" alt="" />
+            <span>and</span>
+            <img class="wizard-icon" src="img/story-icons/wizard-story.png" alt="" />
+            <span>couldn't find it anymore.</span>
+          </div>
+          <div class="story-line invisible-line" id="story-line4">
+            <span>That's when</span>
+            <img class="wizard-icon" src="img/story-icons/wizard-ice-story.png" alt="" />
+            <span>became really</span>
+            <img class="chessking-icon" src="img/story-icons/thunderbolt-icon.svg" alt="" />
+            <span>. He wished</span>
+            <img class="wizard-icon-attack" src="img/story-icons/ice-wizard-story.png" alt="" />
+            <span>his brother</span>
+          </div>
+          <div class="story-line invisible-line" id="story-line5">
+            <span>far away into a dangerous land of</span>
+            <img class="wizard-icon" src="img/story-icons/ogre-story.png" alt="" />
+            <span>and</span>
+            <img class="wizard-icon" src="img/story-icons/golem-story.png" alt="" />
+            <span>.</span>
+          </div>
+          <div class="story-line invisible-line" id="story-line6">
+            <span>Now</span>
+            <img class="wizard-icon" src="img/story-icons/wizard-story.png" alt=""/>
+            <span>has to fight his way back.</span>
+          </div>
+        </div>
+        <div class="how-to-play" id="how-to-play">
+          <div class="howto-headline">
+            <span>How to play</span>
+            <span onclick="back('how-to-play')" class="back-arrow">&leftarrow;</span>
+          </div>
+          <div class="howto-line">
+            <span>Left:</span>
+            <img class="howto-keyboard" src="img/screen-controls/left-arrow.png" alt=""/>
+            <span>Right:</span>
+            <img class="howto-keyboard" src="img/screen-controls/right-arrow.png"alt="" />
+            <span>Jump:</span>
+            <img class="howto-keyboard" src="img/screen-controls/up-arrow.png" alt="" />
+          </div>
+          <div class="howto-line">
+            <span>Shoot with</span>
+            <img class="howto-space" src="img/screen-controls/space-button.png" alt=""/>
+            <span>(if fire or ice)</span>
+          </div>
+          <div class="howto-line">
+            <span>Drink</span>
+            <img class="howto-potion" src="img/potions/potion-blue.png" alt=""/>
+            <span>to become ice-wizard</span>
+          </div>
+          <div class="howto-line">
+            <span>Drink</span>
+            <img class="howto-potion" src="img/potions/potion-red.png" alt="" />
+            <span>to become fire-wizard</span>
+          </div>
+          <div class="howto-line">
+            <span>Get extra</span>
+            <img class="howto-potion" src="img/level1/medieval/Collectable Object/Life.png" alt=""/>
+            <span>for 50 coins</span>
+          </div>
+        </div>
+        <div class="credits" id="credits">
+          <div class="howto-headline">
+            <span class="gradient-text">Credits</span>
+            <span onclick="back('credits')" class="back-arrow"
+              >&leftarrow;</span>
+          </div>
+          <span class="credits-headline">Audio</span>
+          <div class="howto-line">
+            <div class="credits-text">
+              Sound Effect from
+              <ahref="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=14700">Pixabay</a>Sound Effect by<ahref="https://pixabay.com/users/mészárcsekgergely-18097400/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=8486">MészárcsekGergely</a>from<ahref="https://pixabay.com/sound-effects//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=8486">Pixabay</a>
+              <br/>
+              Music by
+              <a href="https://pixabay.com/users/lexin_music-28841948/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=123894">Lexin_Music</a> from
+              <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=123894">
+                Pixabay
+              </a>Music by<a href="https://pixabay.com/users/geoffharvey-9096471/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=122118">geoffharvey</a>from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=122118">Pixabay</a>
+            </div>
+          </div>
+          <span class="credits-headline">Images and Icons</span>
+          <div class="howto-line">
+            <div class="credits-text">
+              <a href="https://icon-library.com/icon/potion-icon-13.html.html">Potion Icon # 62937</a><br />
+              <a href="https://icon-library.com/icon/potion-icon-18.html.html">Potion Icon # 62944</a><br />
+              <a href="https://icon-library.com/icon/potion-icon-15.html.html">Potion Icon # 62935</a><br />
+              <a href="https://www.freepik.com/free-vector/witch-house-dark-wood-with-glowing-mushrooms_32432961.htm#query=cartoon%20wizard%20background&position=14&from_view=search&track=ais">Image by upklyak</a>on Freepik<br />
+              <a href="https://www.freepik.com/free-vector/alchemical-laboratory-with-magic-books-potions_37205185.htm#query=magician%20room&position=12&from_view=search&track=ais">Image by upklyak</a>on Freepik<br />
+              <a href="https://www.freepik.com/free-vector/meadow-with-pond-conifers-hills-night_23007728.htm#query=night%20cartoon%20background&position=2&from_view=search&track=ais">Image by upklyak</a>
+              on Freepik<br />
+              <span>Sprites and Enemies by<a href="craftpix.net"> craftpix.net</a></span><br/>
+              <a href="https://www.kindpng.com/imgv/JRmwib_chess-png-image-chess-pieces-transparent-png/" target="_blank">Chess Png Image - Chess Pieces, Transparent Png @kindpng.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="game-over" id="game-over">
+          <div class="game-over-textbox">
+            <div class="text-over">
+              <p class="text-appear" style="--i: 1">G</p>
+              <p class="text-appear" style="--i: 2">A</p>
+              <p class="text-appear" style="--i: 3">M</p>
+              <p class="text-appear" style="--i: 4">E</p>
+            </div>
+            <div class="text-over">
+              <p class="text-appear" style="--i: 5">O</p>
+              <p class="text-appear" style="--i: 6">V</p>
+              <p class="text-appear" style="--i: 7">E</p>
+              <p class="text-appear" style="--i: 8">R</p>
+            </div>
+          </div>
+          <p class="game-over-play-again" onclick="playAgain('game-over')">
+            try again
+          </p>
+        </div>
+        <div class="killed-brother" id="killed-brother">
+          <p>OH no!</p>
+          <p>You killed your own brother!</p>
+          <p>Who is going to play chess with you now?</p>
+          <p class="killed-brother-play-again" onclick="playAgain('killed-brother')">
+            try again
+          </p>
+        </div>
+        <div class="won" id="won">
+          <div>
+            <span>YOU WON!</span>
+            <img class="happy-end-brothers" src="img/wizard/happy-end.png" alt=""/>
+          </div>
+        </div>
+        <div class="pause-screen" id="pause-screen">
+          <div class="pause-message" onclick="pauseGame()">
+            <div class="pause-imagebox">
+              <img id="pauseimage" src="./img/level3/Platformer/Brick_02.png" alt="" />
+              <span class="pause-text">resume</span>
+            </div>
+          </div>
+        </div>
+        <div class="brother-message-box" id="brother-message">
+          <div class="brother-message">You have the king! Give it back!</div>
+        </div>
+      </div>
+    </body>
+</html>

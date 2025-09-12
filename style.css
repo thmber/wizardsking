@@ -1,0 +1,933 @@
+@font-face {
+  font-family: Cinzel;
+  src: url(fonts/cinzel-decorative-v14-latin-regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: Castoro;
+  src: url(fonts/castoro-titling-v2-latin-regular.ttf);
+}
+@font-face {
+  font-family: zeyada;
+  src: url(fonts/Magicmedieval-pRV1.ttf);
+}
+@font-face {
+  font-family: Sans;
+  src: url(./fonts/OpenSans.ttf);
+}
+
+/**************************************** body and canvas *******************************************/
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Cinzel;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url(img/bg8.jpg);
+  background-size: cover;
+}
+.d-none {
+  display: none;
+}
+canvas {
+  border-radius: 15px;
+  border: 5px solid transparent;
+  display: block;
+  width: 100%;
+}
+.fullscreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 720px;
+  height: 480px;
+  position: relative;
+}
+/***** ++++++++++++++++++++++++++++++++++++++++++ turn your device message +++++++++++++++++*/
+
+.turn-device-message-box {
+  width: 100%;
+  height: 100%;
+  max-height: 66.6vw;
+  position: absolute;
+  z-index: 20;
+  color: white;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10%;
+  background-color: black;
+  border-radius: 10px;
+}
+.turn-device-message,
+.turn-device-button {
+  font-size: 15px;
+}
+.turn-device-button {
+  color: black;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+.turn-device-button:hover {
+  color: white;
+  background-color: black;
+  cursor: pointer;
+  box-shadow: 1px 1px 3px;
+}
+
+/* ++++++++++++++++++ start-screen +++++++++++++++++++++++++++++++++++++ */
+.start-screen {
+  width: 100%;
+  height: 100%;
+  max-height: 66.6vw;
+  position: absolute;
+  z-index: 12;
+  border-radius: 10px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+.start-game-button {
+  height: 20%;
+  width: 40%;
+  display: flex;
+  font-size: 26px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px lightgray;
+}
+.start-game-button:hover {
+  mask-image: linear-gradient(
+    -25deg,
+    rgba(0, 0, 0, 0.6) 30%,
+    #000 50%,
+    rgba(0, 0, 0, 0.6) 70%
+  );
+  mask-size: 200%;
+  animation: shine 2s infinite;
+  border: none;
+  font-size: 27px;
+}
+@keyframes shine {
+  from {
+    mask-position: 150%;
+  }
+
+  to {
+    mask-position: -50%;
+  }
+}
+.startscreen-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.startscreen-controls img {
+  height: 30px;
+}
+.impressum-controls-box {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  font-size: 14px;
+  position: absolute;
+  justify-content: space-between;
+  bottom: 30px;
+}
+.impressum-box {
+  cursor: pointer;
+  font-size: 9px;
+}
+.impressum-box:hover {
+  color: darkgrey;
+}
+/************* ++++++++++++++++ impressum screen +++++++++++++++++***********************************************/
+.impressum-screen {
+  height: 480px;
+  width: 720px;
+  position: absolute;
+  z-index: 13;
+  display: none;
+  color: white;
+  background-color: black;
+  font-size: 14px;
+  text-align: left;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-family: Sans;
+}
+.impressum-screen p {
+  margin: 0;
+  font-size: 12px;
+}
+.back-from-impressum {
+  cursor: pointer;
+}
+
+/* ++++++++++++++++++ loading screen with title and green light +++++++++++++++++++++++++++++++++++++ */
+
+.loading-screen {
+  height: 480px;
+  width: 720px;
+  display: flex;
+  position: absolute;
+  z-index: 10;
+  border-radius: 10px;
+  opacity: 1;
+  transition: opacity 5s;
+  background-color: black;
+}
+.green-light {
+  height: 21px;
+  width: auto;
+  display: none;
+  position: absolute;
+  animation: bounce 3s forwards;
+}
+@keyframes bounce {
+  0% {
+    top: 200px;
+    left: 0px;
+  }
+  40% {
+    top: 200px;
+    left: 639px;
+  }
+  50% {
+    top: 455px;
+    left: 639px;
+  }
+  65% {
+    top: 380px;
+    left: 639px;
+  }
+  100% {
+    top: 424px;
+    left: 639px;
+  }
+}
+.title-letters-container {
+  position: absolute;
+  left: 22%;
+  top: 20%;
+}
+.title-letters {
+  color: rgb(127, 109, 235);
+  display: flex;
+  font-size: 45px;
+  opacity: 0;
+  z-index: 10;
+  padding: 2px;
+  animation: titleletters 20ms ease-in-out forwards;
+  animation-delay: calc((39ms * var(--i)) + 200ms);
+}
+@keyframes titleletters {
+  0% {
+    opacity: 0;
+    transform: scale(3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ++++++++++++++++++ interior house +++++++++++++++++++++++++++++++++++++ */
+
+.interior-book {
+  position: absolute;
+  height: 9%;
+  width: 10%;
+  right: 31%;
+  top: 58%;
+}
+.interior-candles {
+  position: absolute;
+  width: 5%;
+  height: 10%;
+  right: 16%;
+  top: 34%;
+}
+.canvas-controls {
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-height: 66.6vw;
+}
+.canvas-overlay-interior {
+  z-index: 3;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-height: 66.6vw;
+  border-radius: 10px;
+  background-image: url(img/interior/interior.jpg);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-left: 100px;
+  gap: 10px;
+}
+.potion1,
+.potion2,
+.potion3,
+.potion4 {
+  width: 60px;
+  height: 92px;
+}
+
+.potion-box {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.interior-text {
+  border-radius: 15px;
+  border: 3px solid white;
+  box-shadow: 2px 2px 3px 4px rgba(0, 0, 0, 0.2);
+  width: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  transform: translate(-35px, 16px);
+  transition: 225ms;
+  font-size: 0;
+  display: flex;
+  justify-content: center;
+  color: white;
+  box-sizing: border-box;
+}
+.potion1,
+.potion2,
+.potion3,
+.potion4 {
+  z-index: 3;
+}
+.potion-text1 {
+  background-color: rgb(239, 83, 83);
+}
+.potion-text2 {
+  background-color: rgb(183, 60, 183);
+}
+.potion-text3 {
+  background-color: rgb(198, 198, 3);
+}
+.potion-text4 {
+  background-color: rgb(67, 67, 165);
+}
+.potion1:hover + .potion-text1,
+.potion-text1:hover {
+  width: 230px;
+  transform-origin: left;
+  font-size: 20px;
+}
+.potion2:hover + .potion-text2,
+.potion-text2:hover {
+  width: 180px;
+  transform-origin: left;
+  font-size: 20px;
+}
+.potion3:hover + .potion-text3,
+.potion-text3:hover {
+  width: 230px;
+  transform-origin: left;
+  font-size: 20px;
+}
+.potion4:hover + .potion-text4,
+.potion-text4:hover {
+  width: 180px;
+  transform-origin: left;
+  font-size: 20px;
+}
+
+/* ++++++++++++++++++ control-buttons +++++++++++++++++++++++++++++++++++++ */
+
+.control-button {
+  position: absolute;
+  color: white;
+  border-radius: 50%;
+  border: 1px solid white;
+  padding: 3px;
+  width: 25px;
+  height: 25px;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 10px;
+  box-shadow: 1px 1px darkslateblue;
+  cursor: pointer;
+}
+.pause-button {
+  left: 105px;
+}
+.control-button:hover {
+  background-color: white;
+  color: rgb(122, 161, 209);
+}
+.back-to-interior {
+  left: 60px;
+}
+.full-screen {
+  bottom: 2%;
+  right: 2%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+}
+
+/* ++++++++++++++++++ settings music and sound +++++++++++++++++++++++++++++++++++++ */
+
+.settings-button {
+  position: absolute;
+  top: 10px;
+  height: 25px;
+  width: 25px;
+  top: 10px;
+  left: 15px;
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 3px;
+  box-shadow: 1px 1px darkslateblue;
+}
+.settings-button img {
+  height: 25px;
+  width: 25px;
+}
+.settings-button:hover {
+  background-color: white;
+}
+
+.settings-button img:hover {
+  filter: invert();
+}
+.settings-paper {
+  filter: brightness(0.95);
+}
+.overlay-settings {
+  position: absolute;
+  z-index: 13;
+  width: 100%;
+  height: 100%;
+  max-height: 66.6vw;
+  display: none;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px) brightness(0.4);
+  color: rgb(4, 19, 31);
+}
+.overlay-settings img {
+  height: 80%;
+}
+.settings-box {
+  position: absolute;
+  font-size: 32px;
+  text-shadow: 2px 2px lightgrey;
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 35%;
+  gap: 10px;
+}
+.back-from-settings {
+  position: absolute;
+  top: -20%;
+  left: 5%;
+  font-size: 20px;
+}
+.rulerbox {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  gap: 15%;
+}
+.ruler-imagebox-sound img,
+.ruler-imagebox-music img {
+  width: 18px;
+  height: auto;
+  transform: translate(-14px, -22px);
+}
+.ruler-background {
+  width: 80%;
+  height: 3px;
+  background-color: black;
+  border-radius: 10px;
+}
+.ruler-PlusMinus,
+.back-from-settings {
+  cursor: pointer;
+}
+.ruler-PlusMinus:hover,
+.back-from-settings:hover {
+  color: brown;
+}
+/*++++++++++++++++++++++ control-keys display shown as information ++++++++++++++ */
+.control-keys {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 240px;
+  top: 10px;
+  box-sizing: border-box;
+  gap: 10px;
+  color: white;
+  font-size: 10px;
+  font-family: Castoro;
+}
+.control-keys-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+}
+.control-keys-move {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.up-img,
+.left-img,
+.right-img {
+  width: 35px;
+  height: 35px;
+}
+.space-img {
+  width: 70px;
+  height: 35px;
+}
+
+/*++++++++++++++++++++++ pause-screen ++++++++++++++ */
+
+.pause-screen {
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  max-height: 66.6vw;
+  box-sizing: border-box;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(3px) brightness(0.5);
+}
+.pause-message {
+  color: white;
+  cursor: pointer;
+}
+.pause-message:hover {
+  color: black;
+}
+.pause-text {
+  position: absolute;
+  left: 30%;
+  top: 40%;
+}
+
+.pause-imagebox {
+  position: relative;
+}
+.pause-imagebox img {
+  width: 130px;
+}
+
+/*++++++++++++++++++++++ the time-status bar if wizard is ogre ++++++++++++++ */
+
+.ogre-timer {
+  width: 18px;
+  height: 100px;
+  border-radius: 8px;
+  position: absolute;
+  top: 80px;
+  left: 15px;
+  background-color: darkgreen;
+  animation: ogretime 15s forwards;
+  display: none;
+}
+@keyframes ogretime {
+  0% {
+    height: 100px;
+  }
+  100% {
+    height: 0;
+  }
+}
+.canvas-overlay-exterior {
+  z-index: 7;
+  position: absolute;
+  border-radius: 10px;
+  background-image: url(img/bg4.jpg);
+  background-size: cover;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  max-height: 66.6vw;
+  border-radius: 10px;
+}
+.door {
+  position: absolute;
+  top: 50%;
+  left: 37%;
+  cursor: pointer;
+  width: 55px;
+  height: 100px;
+}
+.arrow-to-door {
+  font-size: 22px;
+  position: absolute;
+  top: 69%;
+  left: 40%;
+  opacity: 0;
+  z-index: 10;
+  color: white;
+}
+/* **********************++++++++++++ story screen +++++++++++++++++++++++++++*/
+
+.story,
+.how-to-play,
+.credits {
+  width: 100%;
+  height: 100%;
+  max-height: 66.6vw;
+  position: absolute;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding-left: 15px;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.story {
+  color: white;
+  background: rgb(28, 4, 35);
+  font-size: 22px;
+  padding-left: 30px;
+  padding-top: 20px;
+  font-family: zeyada;
+  overflow: hidden;
+  display: none;
+}
+.story img {
+  padding: 5px;
+  transform: translate(0, -12px);
+}
+.invisible-line {
+  opacity: 0;
+  transition: opacity 1.9s;
+}
+.story-lightning {
+  z-index: 99;
+  width: 920px;
+  height: 880px;
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  display: none;
+}
+.wizard-icon-ice {
+  width: 110px;
+  height: 60px;
+}
+.wizard-icon {
+  width: 60px;
+  height: 60px;
+}
+.wizard-icon-attack {
+  width: 93px;
+  height: 70px;
+  transform: scale(-1, 1);
+}
+.story-icon {
+  width: 45px;
+  height: 45px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.couch-icon {
+  width: 65px;
+  height: 40px;
+}
+.chessboard-icon {
+  width: 50px;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.chessking-icon {
+  width: 20px;
+  height: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.story-arrow {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  opacity: 0;
+}
+.story-arrow,
+.back-arrow {
+  font-size: 45px;
+  cursor: pointer;
+}
+
+/* +++++++++++++++++++++++++++++++ how to play ++++++++++++++++++++++++++++++++++++++++++++++++*/
+.how-to-play {
+  font-family: Castoro;
+  background-color: rgb(15, 15, 45);
+  color: white;
+  padding-left: 50px;
+  display: none;
+}
+.how-to-play img {
+  padding: 10px;
+}
+.howto-headline {
+  font-size: 30px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+}
+.howto-potion,
+.howto-keyboard {
+  height: 40px;
+  width: 40px;
+}
+.howto-space {
+  height: 40px;
+  width: 80px;
+}
+.howto-line,
+.story-line {
+  display: flex;
+  align-items: center;
+}
+
+/* ++++++++++++++++++++++++++++ credits ++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+.credits {
+  background-color: black;
+  justify-content: flex-start;
+  display: none;
+  overflow-y: auto;
+  font-family: Castoro;
+  color: white;
+}
+.credits a {
+  text-decoration: none;
+  color: white;
+}
+.credits-text a {
+  color: white;
+}
+.credits-text {
+  font-size: 12px;
+  color: white;
+  margin-bottom: 20px;
+}
+.gradient-text {
+  background-image: linear-gradient(
+    90deg,
+    rgb(86, 102, 243),
+    rgb(211, 53, 211)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+.credits-headline {
+  font-size: 16px;
+}
+/*++++++++++++++++++++++++++++++++++++ game over +++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+.game-over {
+  z-index: 3;
+  border-radius: 10px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-height: 66.6vw;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  display: none;
+}
+.game-over-textbox,
+.text-over {
+  display: flex;
+}
+.game-over-textbox {
+  color: white;
+  width: 330px;
+  justify-content: space-between;
+  font-size: 50px;
+  height: 480px;
+  align-items: center;
+}
+@keyframes textappear {
+  0% {
+    opacity: 0;
+    transform: scale(2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.text-appear {
+  opacity: 0;
+  animation: textappear 225ms ease-in-out forwards;
+  animation-delay: calc((150ms * var(--i)) + 200ms);
+}
+.game-over-play-again {
+  color: white;
+  position: absolute;
+  bottom: 10%;
+  opacity: 0;
+  animation: textappear 225ms ease-in-out forwards;
+  animation-delay: 2s;
+  cursor: pointer;
+}
+.game-over-play-again:hover,
+.killed-brother-play-again:hover {
+  color: darkgray;
+}
+
+/*+++++++++++++++++++++++ killed-brother screen ++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.killed-brother {
+  z-index: 3;
+  display: flex;
+  border-radius: 10px;
+  color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-height: 66.6vw;
+  font-size: 25px;
+  background-color: black;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  display: none;
+}
+.killed-brother-play-again {
+  color: white;
+  position: absolute;
+  bottom: 10%;
+  font-size: 16px;
+  cursor: pointer;
+}
+/*+++++++++++++++++++++++++++++++++++++ won-screen ++++++++++++++++++++++++++++++*/
+.won {
+  z-index: 3;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-height: 66.6vw;
+  border-radius: 10px;
+  background-image: url(img/sunset.png);
+  background-size: cover;
+  display: none;
+  font-size: 54px;
+  justify-content: center;
+  color: gold;
+  align-items: flex-end;
+}
+
+.happy-end-brothers {
+  position: absolute;
+  width: 150px;
+  height: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%) scale(1);
+  animation: sunset 8s ease-in-out forwards;
+}
+.imgbox-won img {
+  width: 100%;
+}
+
+@keyframes sunset {
+  0% {
+    transform: translate(-50%, 50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+/*+++++++++++++++++++++++++++++++++++++ touch-buttons ++++++++++++++++++++++++++++++*/
+
+.touch-button {
+  border-radius: 50%;
+  display: none;
+  color: white;
+  border: 1px solid white;
+  width: 35px;
+  height: 35px;
+  font-size: 28px;
+  padding-top: 2px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px darkslateblue;
+  position: absolute;
+  bottom: 15px;
+  display: none;
+}
+.touch-left {
+  left: 20px;
+}
+.touch-right {
+  left: 70px;
+}
+.touch-up {
+  right: 15px;
+}
+.touch-shoot {
+  right: 70px;
+}
+
+/**************+++++++++++++++++++++++++++++++ message from the brother +++++++++++ ***************/
+.brother-message-box {
+  width: 100%;
+  height: 100%;
+  max-height: 66.6vw;
+  position: absolute;
+  z-index: 1;
+  color: white;
+  display: none;
+}
+.brother-message {
+  bottom: 55%;
+  position: absolute;
+  left: 25%;
+  font-size: 14px;
+}

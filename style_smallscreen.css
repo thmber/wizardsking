@@ -1,0 +1,273 @@
+@media only screen and (max-width: 720px) {
+  canvas,
+  .impressum-screen,
+  .canvas-overlay-interior,
+  .canvas-overlay-exterior,
+  .canvas-controls,
+  .fullscreen,
+  .pause-screen,
+  .loading-screen,
+  .overlay-settings,
+  .start-screen {
+    width: 95%;
+  }
+  .impressum-screen,
+  .canvas-overlay-exterior,
+  .canvas-overlay-interior,
+  .canvas-controls,
+  .fullscreen,
+  .pause-screen,
+  .loading-screen,
+  .overlay-settings,
+  .start-screen {
+    height: 66.66vw;
+  }
+  .green-light {
+    height: 4.5%;
+    width: auto;
+    position: absolute;
+    animation: bouncesmall 3s forwards;
+  }
+  @keyframes bouncesmall {
+    0% {
+      top: 20%;
+      right: 0;
+    }
+    40% {
+      top: 20%;
+      right: 93%;
+    }
+    50% {
+      top: 80%;
+      right: 93%;
+    }
+    65% {
+      top: 60%;
+      right: 93%;
+    }
+    100% {
+      top: 81%;
+      right: 93%;
+    }
+  }
+  .title-letters {
+    font-size: 30px;
+  }
+  .settings-box {
+    font-size: 25px;
+  }
+  .ruler-imagebox-sound img,
+  .ruler-imagebox-music img {
+    width: 13px;
+    transform: translate(-11px, -17px);
+  }
+
+  .potion1,
+  .potion2,
+  .potion3,
+  .potion4 {
+    height: 54px;
+    width: 36px;
+  }
+  .interior-book {
+    right: 24%;
+  }
+  .interior-candles {
+    right: 7.5%;
+  }
+
+  .full-screen {
+    margin-bottom: 20px;
+  }
+  .headline {
+    font-size: 29px;
+  }
+  .interior-text {
+    height: 30px;
+    transform: translate(-20px, 8px);
+  }
+  .control-keys {
+    display: none;
+  }
+  .story {
+    font-size: 18px;
+  }
+  .wizard-icon-ice {
+    width: 55px;
+    height: 30px;
+  }
+  .wizard-icon {
+    width: 30px;
+    height: 30px;
+  }
+  .wizard-icon-attack {
+    width: 46px;
+    height: 35px;
+  }
+  .story-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .couch-icon {
+    width: 32px;
+    height: 20px;
+  }
+  .chessboard-icon {
+    width: 25px;
+    height: 25px;
+  }
+  .chessking-icon {
+    width: 10px;
+    height: 25px;
+  }
+  .how-to-play {
+    padding-left: 20px;
+  }
+  .how-to-play img {
+    padding: 4px;
+  }
+  .howto-headline {
+    font-size: 20px;
+    padding-bottom: 5px;
+    width: 350px;
+  }
+  .howto-potion,
+  .howto-keyboard {
+    height: 20px;
+    width: 20px;
+  }
+  .howto-space {
+    height: 20px;
+    width: 40px;
+  }
+  .control-button,
+  .settings-button {
+    top: 30px;
+  }
+  .arrow-to-door {
+    left: 44%;
+  }
+}
+@media only screen and (max-width: 560px) {
+  .story {
+    font-size: 14px;
+  }
+  .story img {
+    transform: translate(-10px, 0);
+  }
+  .settings-box {
+    font-size: 18px;
+  }
+  .start-game-button {
+    font-size: 13px;
+  }
+  .start-game-button:hover {
+    font-size: 14px;
+  }
+  .killed-brother {
+    font-size: 12px;
+  }
+  .startscreen-controls {
+    gap: 6px;
+  }
+  .startscreen-controls img {
+    height: 25px;
+  }
+  .impressum-controls-box {
+    bottom: 15px;
+    font-size: 9px;
+  }
+  .impressum-screen p {
+    font-size: 10px;
+  }
+  .impressum-screen h1 {
+    font: 18px;
+    margin-bottom: 0;
+  }
+  .turn-device-message,
+  .turn-device-button {
+    font-size: 10px;
+  }
+}
+@media only screen and (max-height: 480px) {
+  canvas {
+    height: 100vh;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .headline {
+    font-size: 20px;
+  }
+  .settings-box {
+    font-size: 13px;
+  }
+  .start-game-button {
+    font-size: 10px;
+  }
+  .start-game-button:hover {
+    font-size: 11px;
+  }
+  .touch-screen-message {
+    font-size: 8px;
+  }
+  .pause-imagebox img {
+    width: 90px;
+  }
+  .pause-text {
+    font-size: 12px;
+    left: 27%;
+    top: 37%;
+  }
+  .full-screen {
+    margin-bottom: 15px;
+  }
+  .title-letters {
+    font-size: 20px;
+  }
+  .arrow-to-door {
+    font-size: 15px;
+  }
+  .canvas-overlay-interior {
+    padding-left: 40px;
+  }
+  .control-button,
+  .settings-button {
+    height: 15px;
+    width: 15px;
+    font-size: 14px;
+    top: 20px;
+  }
+  .settings-button {
+    left: 10px;
+  }
+  .settings-button img {
+    width: 15px;
+    height: 15px;
+  }
+  .back-to-interior {
+    left: 40px;
+  }
+  .pause-button {
+    left: 70px;
+  }
+  .game-over-textbox {
+    justify-content: space-evenly;
+    font-size: 35px;
+  }
+  .brother-message {
+    font-size: 8px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .potion1,
+  .potion2,
+  .potion3,
+  .potion4 {
+    height: 45px;
+    width: 30px;
+  }
+  .story {
+    font-size: 12px;
+  }
+}
