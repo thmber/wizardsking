@@ -1,4 +1,4 @@
-# :crown: Wizards' king
+# :crown: Wizards' king :crown:
 
 ![Wizardsking Screenshot](img/wizard.avif)
 
